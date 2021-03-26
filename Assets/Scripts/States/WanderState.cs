@@ -4,16 +4,16 @@ using System.Collections;
 public class WanderState : State {
 
 	[SerializeField]
-	private float speed = 1f;
+	private float _speed = 1f;
 
 	[SerializeField]
-	private float arrivalDistance = 0f;
+	private float _arrivalDistance = 0f;
 
 	[SerializeField]
-	private float sightDistance = 2.5f;
+	private float _sightDistance = 2.5f;
 
 	[SerializeField]
-	private GameObject target;
+	private GameObject _target;
 
 	private Vector2 _targetPosition = new Vector2();
 	
@@ -29,20 +29,20 @@ public class WanderState : State {
 	}
 
 	public override void Act(){
-		float step = speed * Time.deltaTime;
+		float step = _speed * Time.deltaTime;
 		float distance;
 
 		transform.position = Vector2.MoveTowards(transform.position, _targetPosition, step);
 		distance = Vector2.Distance(transform.position, _targetPosition);
-
-		if(distance < arrivalDistance)
+		
+		if(distance <= _arrivalDistance)
 			ChooseTargetLocation();
 	}
 
 	public override void Reason(){
-		float distanceToTarget = Vector2.Distance(target.transform.position, transform.position);
+		float distanceToTarget = Vector2.Distance(_target.transform.position, transform.position);
 
-		if(distanceToTarget < sightDistance){
+		if(distanceToTarget < _sightDistance){
 			// we zijn dicht bij de target
 			// we gaan alarm slaan
 			GetComponent<StateMachine>().SetState( StateId.Alerting);
