@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class StateMachine : MonoBehaviour {
 
 	private Dictionary<StateId, State> _states = new Dictionary<StateId, State> ();
-
+	
 	private State _currentState;
 	
 	void Update () {

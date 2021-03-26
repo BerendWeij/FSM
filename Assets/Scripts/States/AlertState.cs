@@ -4,7 +4,7 @@ using System.Collections;
 public class AlertState : State {
 
 	[SerializeField]
-	private float alertDuration = 4f;
+	private float _alertDuration = 4f;
 
 	private float _currentAlarmTime;
 
@@ -19,7 +19,7 @@ public class AlertState : State {
 	}
 
 	public override void Reason(){
-		if(_currentAlarmTime > alertDuration)
+		if(_currentAlarmTime > _alertDuration)
 			GetComponent<StateMachine>().SetState( StateId.Fleeing);
 
 	}

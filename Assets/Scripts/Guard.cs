@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 public enum StateId
 {
-	NullStateId = 0,
-	Wandering = 1,
-	Alerting = 2,
-	Fleeing = 3
+	NullStateId,
+	Wandering,
+	Alerting,
+	Fleeing,
+	Attacking
 }
 
 public class Guard : MonoBehaviour {
@@ -20,6 +21,8 @@ public class Guard : MonoBehaviour {
 		_stateMachine.AddState( StateId.Alerting, GetComponent<AlertState>() );
 		_stateMachine.AddState( StateId.Wandering, GetComponent<WanderState>() );
 		_stateMachine.AddState( StateId.Fleeing, GetComponent<FleeState>() );
+		
+		
 
 		_stateMachine.SetState( StateId.Wandering );
 	}
